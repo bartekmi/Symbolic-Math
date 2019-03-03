@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "math", "math\math.csproj", "{8CE7A450-F8D3-4599-8917-555DFE2F433D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "symlib", "..\symlib\symlib.csproj", "{B926A9CF-15CD-4FD8-9901-64941F6EFC4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "symlib", "symlib\symlib.csproj", "{B926A9CF-15CD-4FD8-9901-64941F6EFC4B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "symlib test", "symlib test\symlib test.csproj", "{1A66F0BD-2B62-4161-98EB-60B9BBE14490}"
 EndProject

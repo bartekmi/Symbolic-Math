@@ -49,14 +49,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="engine\RuleEngineTest.cs" />
     <Compile Include="parser\ParserTest.cs" />
+    <Compile Include="parser\TokenizerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\symlib\symlib.csproj">
+    <ProjectReference Include="..\symlib\symlib.csproj">
       <Project>{b926a9cf-15cd-4fd8-9901-64941f6efc4b}</Project>
       <Name>symlib</Name>
     </ProjectReference>

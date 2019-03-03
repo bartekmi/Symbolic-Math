@@ -58,6 +58,25 @@ namespace symlib.parser {
         }
 
         [TestMethod]
+        public void Parser_Unary() {
+            Test("a'", "(a)'");
+            Test("a * b'", "a * (b)'");
+            Test("(a ^ b)'", "(a ^ b)'");
+            Test("sin(x + k)");
+            Test("cos(x + k)");
+            Test("tan(x + k)");
+            Test("sqrt(x + k)");
+            Test("etox(x + k)");
+        }
+
+        [TestMethod]
+        public void Parser_UnaryMinus() {
+            Test("-a", "-1 * a");
+            Test("-1", "-1 * 1");
+            Test("-1.23", "-1 * 1.23");
+        }
+
+        [TestMethod]
         public void Parser_Errors() {
             TestError("", "Empty expression");
             TestError("+", "Unexpected binary operator: +");
