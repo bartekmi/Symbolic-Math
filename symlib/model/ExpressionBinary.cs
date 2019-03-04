@@ -28,8 +28,16 @@ namespace symlib.model {
 
     public class ExpressionBinary : Expression {
         public BinaryOperator Operator { get; set; }
-        public Expression Left { get; set; }
-        public Expression Right { get; set; }
+
+        public Expression Left {
+            get { return GetChild(0); }
+            set { SetChild(value, 0, 2); }
+        }
+
+        public Expression Right {
+            get { return GetChild(1); }
+            set { SetChild(value, 1, 2); }
+        }
 
         public override string ToString() {
             if (NeedsBrackets())
@@ -49,10 +57,6 @@ namespace symlib.model {
                 default:
                     return true;
             }
-        }
-
-        internal override IEnumerable<Expression> GetChildren() {
-            return new Expression[] { Left, Right };
         }
 
         internal static bool IsBinaryOp(string str, out BinaryOperator unaryOp) {

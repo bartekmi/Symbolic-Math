@@ -41,11 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="engine\RuleArithmetic.cs" />
     <Compile Include="engine\RuleEngine.cs" />
     <Compile Include="engine\RuleRepository.cs" />
+    <Compile Include="engine\RuleTranslation.cs" />
     <Compile Include="model\Expression.cs" />
     <Compile Include="model\ExpressionBinary.cs" />
     <Compile Include="model\ExpressionConstant.cs" />
+    <Compile Include="model\ExpressionFunc.cs" />
     <Compile Include="model\ExpressionUnary.cs" />
     <Compile Include="model\ExpressionVariable.cs" />
     <Compile Include="model\OperatorAttribute.cs" />

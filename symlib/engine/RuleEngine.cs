@@ -25,18 +25,36 @@ namespace symlib.engine {
             while (madeProgress) {
                 Console.WriteLine("Pass " + (pass++));
                 madeProgress = false;
-                foreach (Rule rule in _rules)
-                    if (rule.CanApply(exp, out Dictionary<string, Expression> mappings)) {
-                        Console.Write(string.Format("Rule: {0}   =====>   ", rule));
 
-                        exp = rule.Apply(exp, mappings);
+                foreach (Expression expression in Expression.DepthFirst(exp)) {
+                    Expression replacement = ApplyRulesToExpression(expression);
+                    if (replacement != null) {
                         madeProgress = true;
-
-                        Console.WriteLine(exp);
+                        if (expression == exp)
+                            exp = replacement;
+                        else
+                            expression.Parent.ReplaceChild(expression, replacement);
                     }
+                }
             }
 
             return exp;
+        }
+
+        // If any rules can be applied, return the modified expression (only apply first rule)
+        // Return null if nothing more can be done
+        private Expression ApplyRulesToExpression(Expression exp) {
+            foreach (Rule rule in _rules)
+                if (rule.CanApply(exp, out object clientData)) {
+                    Console.Write(string.Format("Rule: {0}   =====>   ", rule));
+
+                    exp = rule.Apply(exp, clientData);
+
+                    Console.WriteLine(exp);
+                    return exp;
+                }
+
+            return null;
         }
     }
 }

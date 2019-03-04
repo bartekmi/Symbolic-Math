@@ -63,10 +63,20 @@ namespace symlib.parser {
                         };
                     // Variable
                     } else if (str.Length == 1) {
-                        AboutToCreateExpression(token, ref current);
-                        current = new ExpressionVariable() {
-                            Name = str
-                        };
+                        if (ExpressionFunc.FUNC_NAMES.Contains(str)) {
+                            Expect(tokens, '(');
+                            Expect(tokens, 'x');
+                            Expect(tokens, ')');
+                            AboutToCreateExpression(token, ref current);
+                            current = new ExpressionFunc() {
+                                Name = str
+                            };
+                        } else {
+                            AboutToCreateExpression(token, ref current);
+                            current = new ExpressionVariable() {
+                                Name = str
+                            };
+                        }
                     } else
                         throw new Exception("Unexpected token: " + token);
                 // Numerical constants
@@ -209,7 +219,8 @@ namespace symlib.parser {
 
             object token = tokens.Pop();
 
-            if (token is char && (char)token == expected) {
+            if (token is char && (char)token == expected ||
+                token is string && token.ToString().Length == 1 && token.ToString()[0] == expected) {
                 // Good!
             } else
                 throw new Exception(string.Format("Expected {0} but got {1}", expected, token));

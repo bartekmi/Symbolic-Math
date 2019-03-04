@@ -19,15 +19,15 @@ namespace symlib.model {
 
     public class ExpressionUnary : Expression {
         public UnaryOperator Operator { get; set; }
-        public Expression Child { get; set; }
+
+        public Expression Child {
+            get { return GetChild(0); }
+            set { SetChild(value, 0, 1); }
+        }
 
         public override bool NeedsBrackets() {
             return 
                 Operator == UnaryOperator.Minus;
-        }
-
-        internal override IEnumerable<Expression> GetChildren() {
-            return new Expression[] { Child };
         }
 
         public override string ToString() {
